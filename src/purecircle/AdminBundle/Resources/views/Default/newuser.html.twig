@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    New user | Purecircle Report
+{% endblock %}
+
+{% block stylesheets %}
+
+    {{parent()}}
+
+
+
+    {% stylesheets
+                
+               filter="cssrewrite" 
+    %}
+
+    <link  rel="stylesheet" href="{{asset_url}}"  />
+    {% endstylesheets %}    
+
+{% endblock %}
+{% block body %}
+    <!--header start -->
+
+    <body class="login-body">
+    <div class="container">
+        <a style="margin-left:45%;font-size:13px" href="{{path('purecircle_main')}}" class="logo" >Pure<span>Circle</span></a>
+        <form class="form-signin" action="index.html">
+        <h2 class="form-signin-heading">registration center</h2>
+        <div class="login-wrap">
+            <p>Enter your personal details below</p>
+            <input type="text" class="form-control" placeholder="Full Name" name="fullname" autofocus>
+            <input type="text" class="form-control" placeholder="Address" name="address" autofocus>
+            <input type="text" class="form-control" placeholder="Email"name="email" autofocus>
+            <input type="text" class="form-control" placeholder="City/Town" name="city" autofocus>
+            <div class="radios">
+                <label class="label_radio col-lg-6 col-sm-6" for="radio-01">
+                    <input name="sample-radio" id="radio-01" value="ROLE_COUNTY" type="radio" checked />County
+                </label>
+                <label class="label_radio col-lg-6 col-sm-6" for="radio-02">
+                    <input name="sample-radio" id="radio-02" value="ROLE_ADMIN" type="radio" />Admin
+                </label>
+            </div>
+
+            <p> Enter account details below</p>
+            <input type="text" class="form-control" placeholder="User Name" autofocus>
+            <input type="password" class="form-control" name="password" placeholder="Password">
+            <input type="password" class="form-control" name="paasword2" placeholder="Re-type Password">
+            <label class="checkbox">
+                <input type="checkbox" value="agree this condition" name="terms"> I agree to the Terms of Service and Privacy Policy
+            </label>
+            <button class="btn btn-lg btn-login btn-block" type="submit">Submit</button>
+
+            <div class="registration">
+                Already Registered.
+                <a class="" href="">
+                    Login
+                </a>
+            </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+
+
+  
+    </body>
+  
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+    {{parent()}}
+    
+
+
+
+    {%javascripts 
+          
+    %} 
+
+
+
+
+    {%endjavascripts %} 
+
+{% endblock %}
+
+
+

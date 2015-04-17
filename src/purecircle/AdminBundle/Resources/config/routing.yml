@@ -1,0 +1,6 @@
+purecircle_admin:
+    path:     /admin
+    defaults: { _controller: purecircleAdminBundle:Default:index }
+purecircle_regiser:
+    path:     admin/register
+    defaults: { _controller: purecircleAdminBundle:Default:register}

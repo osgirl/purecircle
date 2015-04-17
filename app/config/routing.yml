@@ -1,3 +1,11 @@
+purecircle_admin:
+    resource: "@purecircleAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+purecircle_main:
+    resource: "@purecircleMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

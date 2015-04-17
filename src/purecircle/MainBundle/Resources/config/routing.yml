@@ -1,0 +1,12 @@
+purecircle_main:
+    path:     /
+    defaults: { _controller: purecircleMainBundle:Default:index }
+
+
+purecircle_login:
+    path:     /login
+    defaults: { _controller: purecircleMainBundle:Default:login}
+
+purecircle_logout:
+    path:     /logout
+   
