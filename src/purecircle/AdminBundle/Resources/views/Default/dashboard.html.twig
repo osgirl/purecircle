@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Dashboard | Purecircle Report
+{% endblock %}
+
+{% block stylesheets %}
+
+    {{parent()}}
+
+
+
+    {% stylesheets
+                
+               filter="cssrewrite" 
+    %}
+
+    <link  rel="stylesheet" href="{{asset_url}}"  />
+    {% endstylesheets %}    
+
+{% endblock %}
+{% block body %}
+
+    {{parent()}}
+
+    <section id="main-content">
+        <section class="wrapper">
+            <!--state overview start-->
+            <div class="row state-overview">
+                <div class="col-lg-3 col-sm-6">
+                    <section class="panel">
+                        <div class="symbol terques">
+                            <i class="icon-user"></i>
+                        </div>
+                        <div class="value">
+                            <h1 class="count">
+                                0-100
+                            </h1>
+                            <p>Tech Advisors.</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <section class="panel">
+                        <div class="symbol red">
+                            <i class="icon-lemon"></i>
+                        </div>
+                        <div class="value">
+                            <h1 class=" count2">
+                                0
+                            </h1>
+                            <p>Farmers</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <section class="panel">
+                        <div class="symbol yellow">
+                            <i class="icon-leaf"></i>
+                          
+                        </div>
+                        <div class="value">
+                            <h1 class=" count3">
+                                0
+                            </h1>
+                            <p>Leafs clerks</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <section class="panel">
+                        <div class="symbol blue">
+                            <i class="icon-bar-chart"></i>
+                        </div>
+                        <div class="value">
+                            <h1 class=" count4">
+                                0
+                            </h1>
+                            <p>Total leaves collected</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!--state overview end-->
+
+            
+            
+            
+
+        </section>
+    </section>  
+</body>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+  
+{{ parent() }}
+
+ <script src="{{asset('bundles/purecirclemain/js/jquery.sparkline.js')}}" type="text/javascript"></script>
+ <script src="{{asset('bundles/purecirclemain/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js')}}"></script>
+ <script src="{{asset('bundles/purecirclemain/js/jquery.customSelect.min.js')}}" ></script>
+  <script src="{{asset('bundles/purecirclemain/js/count.js')}}"></script> 
+
+    {% javascripts 
+      ' bundles/purecirclemain/js/count.js'   
+
+    %} 
+
+<script type="text/javascript" 
+		
+		
+		src="{{asset_url}}"> 
+        </script>
+
+
+    {%endjavascripts %} 
+
+{% endblock %}
+
+
+

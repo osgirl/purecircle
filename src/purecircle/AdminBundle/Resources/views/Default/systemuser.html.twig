@@ -1,0 +1,179 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    New County Manager | Purecircle Report
+{% endblock %}
+
+{% block stylesheets %}
+
+    {{parent()}}
+
+
+
+    {% stylesheets
+                
+               filter="cssrewrite" 
+    %}
+
+    <link  rel="stylesheet" href="{{asset_url}}"  />
+    {% endstylesheets %}    
+
+{% endblock %}
+{% block body %}
+    <!--header start -->
+    {{parent()}}
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper site-min-height">
+            <!-- page start-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Register new County Manager
+                        </header>
+                        <div class="panel-body">
+                            <div class="stepy-tab">
+                                <ul id="default-titles" class="stepy-titles clearfix">
+                                    <li id="default-title-0" class="current-step">
+                                        <div>Profile</div>
+                                    </li>
+                                    <li id="default-title-1" class="">
+                                        <div>Account</div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <form class="form-horizontal" id="default">
+                                <fieldset title="Profile" class="step" id="default-step-0">
+                                    <legend> </legend>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Full Name</label>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" id="fullname" placeholder="Full Name">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label col-lg-2">Gender</label>
+                                        <div class="col-lg-10">
+                                            <label class="radio-inline" style="display:inline-block">
+                                                <input type="radio" id="genderMale" value="Male" name="gender">Male</label>
+                                            <label class="radio-inline" style="display:inline-block">
+                                                <input type="radio" id="genderFemale" value="Female" name="gender">Female                                          </label>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Email Address</label>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" id="email" placeholder="Email Address">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">County</label>
+                                        <div class="col-lg-10">
+                                            <select class="form-control m-bot15" name="county" required>
+                                                <option value="" ></option>
+                                                <option value="1">Micsklnfs</option>
+                                                <option value="2">rffer</option>
+                                                <option value="3">dfuygd</option>
+                                                <option value="4">reherh</option>
+                                                <option value="5">fvjsgwey</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                <fieldset title="Account" class="step" id="default-step-1" >
+                                    <legend> </legend>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">User Name</label>
+                                        <div class="col-lg-10">
+                                            <input type="text" id="" class="form-control" placeholder="Username">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Password</label>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" id="email" placeholder="Password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Confirm Password</label>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" id="email" placeholder="Confirm Password">
+                                        </div>
+                                    </div>
+
+
+                                </fieldset>
+
+                                <input type="submit" class="finish btn btn-danger" value="Finish"/>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <!-- js placed at the end of the document so the pages load faster -->
+    {{parent()}}
+
+    <!--script for this page-->
+
+
+    <script src="{{asset('bundles/purecirclemain/js/form-validation-script.js')}}"></script>
+
+    <script type="text/javascript" src="{{asset('bundles/purecirclemain/js/jquery.validate.min.js')}}"></script>
+
+    <script src="{{asset('bundles/purecirclemain/js/jquery.stepy.js')}}"></script>
+
+
+    <script>
+
+        //step wizard
+
+        $(function () {
+            $('#default').stepy({
+                backLabel: 'Previous',
+                block: true,
+                nextLabel: 'Next',
+                titleClick: true,
+                titleTarget: '.stepy-tab'
+            });
+        });
+    </script>
+
+    {%javascripts 
+          
+    %} 
+
+
+
+
+    {%endjavascripts %}
+
+
+{% endblock %}
+
+
+

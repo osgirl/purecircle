@@ -8,5 +8,8 @@ purecircle_login:
     defaults: { _controller: purecircleMainBundle:Default:login}
 
 purecircle_logout:
-    path:     /logout
+    path: /logout
+    
+login_check:
+    path: /login_check
    

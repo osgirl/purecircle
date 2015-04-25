@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+   County Manager Details | Purecircle Report
+{% endblock %}
+
+{% block stylesheets %}
+
+    {{parent()}}
+
+
+
+    {% stylesheets
+                
+               filter="cssrewrite" 
+    %}
+
+    <link  rel="stylesheet" href="{{asset_url}}"  />
+    {% endstylesheets %}    
+
+{% endblock %}
+
+{% block body -%}
+ {{parent()}}
+    
+    
+  <section id="main-content">
+          <section class="wrapper">
+              <!-- page start-->
+              <section class="panel">
+                  <header class="panel-heading">
+                      County Manager <i class="label label-success" >{{ entity.username |capitalize}}</i> Details
+                  </header>
+              </section>
+<div class="row">
+                        <div class="col-lg-5">
+                      <!--widget start-->
+                      <aside class="profile-nav alt green-border">
+                          <section class="panel">
+                              <div class="user-heading alt green-bg">
+                                  <a href="#">
+                                      <img alt="" src="{{asset('bundles/purecirclemain/img/profile-avatar.jpg')}}">
+                                  </a>
+                                      <h1>{{ entity.username |capitalize }}</h1>
+                                  <p>{{ entity.email }}</p>
+                                  <i class="icon-map-marker"></i> {{ entity.county |capitalize }}   | <i class="icon-mobile-phone"> </i> {{ entity.contact}}
+                              </div>
+
+                              <ul class="nav nav-pills nav-stacked">
+                                  <li><a href="javascript:;"> <i class="icon-anchor"></i> Tech Advi <span class="label label-primary pull-right r-activity">19</span></a></li>
+                                  <li><a href="javascript:;"> <i class="icon-book"></i>Mini Agents <span class="label label-info pull-right r-activity">11</span></a></li>
+                                  <li><a href="javascript:;"> <i class="icon-lemon"></i> Farmer <span class="label label-warning pull-right r-activity">33</span></a></li>
+                                  <li><a href="javascript:;"> <i class="icon-envelope-a"></i> Leaf Clerk <span class="label label-success pull-right r-activity">16</span></a></li>
+                                  <li><a href="javascript:;"> <i class="icon-leaf"></i> Leafs <span class="label label-success pull-right r-activity">340</span></a></li>
+                              </ul>
+
+                          </section>
+                      </aside>
+                      <!--widget end-->
+                     
+                  </div>
+                       
+                                  <!--widget start-->
+                       <div class="col-lg-6">
+                      <section class="panel">
+                          <header class="panel-heading">
+                             Other Info
+                          </header>
+                          <div class="list-group">
+                              <a class="list-group-item " href="javascript:;">
+                                  <h4 class="list-group-item-heading">List group item heading</h4>
+                                  <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                              </a>
+                              <a class="list-group-item " href="javascript:;">
+                                  <h4 class="list-group-item-heading">List group item heading</h4>
+                                  <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                              </a>
+                              <a class="list-group-item" href="javascript:;">
+                                  <h4 class="list-group-item-heading">List group item heading</h4>
+                                  <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                              </a>
+                          </div>
+                      </section>
+                  </div>
+                      <!--widget end-->
+                      </div>
+          </section>
+  </section>
+   
+{% endblock %}
+{% block javascripts %}
+
+  
+{{ parent() }}
+
+  <script type="text/javascript" src="{{asset('bundles/purecirclemain/assets/data-tables/jquery.dataTables.js')}}"></script>
+  <script type="text/javascript" src="{{asset('bundles/purecirclemain/assets/data-tables/DT_bootstrap.js')}}"></script>
+
+  
+        <!--script for this page only-->
+    
+
+      <!-- END JAVASCRIPTS -->
+     
+    {% javascripts 
+    %} 
+
+<script type="text/javascript" 
+		
+		
+		src="{{asset_url}}"> 
+        </script>
+
+
+    {%endjavascripts %} 
+
+{% endblock %}
+
+

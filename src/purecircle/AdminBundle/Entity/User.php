@@ -1,8 +1,8 @@
 <?php
 
 namespace purecircle\AdminBundle\Entity;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -12,8 +12,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity
  * @UniqueEntity(fields="email", message="Email already taken")
  */
-class User implements UserInterface,\Serializable
-{
+class User implements UserInterface {
+
     /**
      * @var integer
      *
@@ -33,21 +33,35 @@ class User implements UserInterface,\Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=64)
+     * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
-
+    
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255,unique=true)
      */
     private $email;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="county", type="string", length=255)
+     */
+    private $county;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contact", type="string", length=255)
+     */
+    private $contact;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="is_active", type="string",  type="boolean")
+     * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
 
@@ -57,9 +71,13 @@ class User implements UserInterface,\Serializable
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
+    }
+
+    public function __construct() {
+        $this->isActive = true;
+
     }
 
     /**
@@ -68,8 +86,7 @@ class User implements UserInterface,\Serializable
      * @param string $username
      * @return User
      */
-    public function setUsername($username)
-    {
+    public function setUsername($username) {
         $this->username = $username;
 
         return $this;
@@ -80,8 +97,7 @@ class User implements UserInterface,\Serializable
      *
      * @return string 
      */
-    public function getUsername()
-    {
+    public function getUsername() {
         return $this->username;
     }
 
@@ -91,9 +107,8 @@ class User implements UserInterface,\Serializable
      * @param string $password
      * @return User
      */
-    public function setPassword($password)
-    {
-        $this->password = $password;
+    public function setPassword($password) {
+        $this->password = password_hash($password,PASSWORD_BCRYPT);
 
         return $this;
     }
@@ -103,8 +118,7 @@ class User implements UserInterface,\Serializable
      *
      * @return string 
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
@@ -114,8 +128,7 @@ class User implements UserInterface,\Serializable
      * @param string $email
      * @return User
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
 
         return $this;
@@ -126,22 +139,8 @@ class User implements UserInterface,\Serializable
      *
      * @return string 
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
-    }
-
-    /**
-     * Set isActive
-     *
-     * @param string $isActive
-     * @return User
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
-
-        return $this;
     }
 
     /**
@@ -149,8 +148,7 @@ class User implements UserInterface,\Serializable
      *
      * @return string 
      */
-    public function getIsActive()
-    {
+    public function getIsActive() {
         return $this->isActive;
     }
 
@@ -164,32 +162,70 @@ class User implements UserInterface,\Serializable
     }
 
     public function getSalt() {
-        return null; 
+        return null;
     }
 
-    public function serialize() {
-     return serialize(array(
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt,
-        ));   
-    }
+    
 
-    public function unserialize($serialized) {
-       list (
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt
-        ) = unserialize($serialized);  
-    }
- public function __construct()
+
+   
+
+    /**
+     * Set county
+     *
+     * @param string $county
+     * @return User
+     */
+    public function setCounty($county)
     {
-        $this->isActive = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid(null, true));
+        $this->county = $county;
+
+        return $this;
+    }
+
+    /**
+     * Get county
+     *
+     * @return string 
+     */
+    public function getCounty()
+    {
+        return $this->county;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return User
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Set contact
+     *
+     * @param string $contact
+     * @return User
+     */
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    /**
+     * Get contact
+     *
+     * @return string 
+     */
+    public function getContact()
+    {
+        return $this->contact;
     }
 }
