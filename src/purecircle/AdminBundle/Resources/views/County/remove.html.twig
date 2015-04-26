@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>County {{id}}</h1>
+
+  
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_county') }}">
+            Back to the list
+        </a>
+    </li>
+    
+</ul>
+{% endblock %}

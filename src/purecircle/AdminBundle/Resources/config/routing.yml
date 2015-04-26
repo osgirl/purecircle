@@ -1,3 +1,7 @@
+purecircle_admin_county:
+    resource: "@purecircleAdminBundle/Resources/config/routing/county.yml"
+    prefix:   /admin/county
+
 purecircle_admin_user:
     resource: "@purecircleAdminBundle/Resources/config/routing/user.yml"
     prefix:   /

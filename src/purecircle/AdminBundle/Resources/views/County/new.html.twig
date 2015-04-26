@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    New County  | Purecircle Report
+{% endblock %}
+
+{% block stylesheets %}
+
+    {{parent()}}
+
+
+
+    {% stylesheets
+                
+               filter="cssrewrite" 
+    %}
+
+    <link  rel="stylesheet" href="{{asset_url}}"  />
+    {% endstylesheets %}    
+
+{% endblock %}
+{% block body -%}
+    
+     {{parent()}}
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper site-min-height">
+            <!-- page start-->
+            <div class="row">
+                <div class="col-lg-offset-3 col-lg-8">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Add new County | | 
+                            {% if  created is defined %}
+                            {{created}}
+                           {%  endif %}
+                        </header>
+                        <div class="panel-body">
+                        <form action="{{ path('admin_county_create') }}" method="post" class="form-horizontal">
+                            <div class="form-group">
+                                
+                                 <label class="col-sm-2 col-sm-2 control-label"> 
+                                     
+                                     {{form_label(form.countyName)}} 
+                                 
+                                 </label>
+                                              <div class="col-sm-7">
+                                
+                                {{ form_widget(form.countyName)}}
+                                
+                                              </div>
+                                  {{form_rest(form)}}             
+                           </div>  
+                           
+                </form>
+        
+  
+        <a class="btn btn-default btn-xs" href="{{path('admin_county') }}">
+            << Back to the list
+        </a>
+                        </div>
+            
+                    </section>
+                </div></div></section></section>
+               
+{% endblock %}

@@ -1,0 +1,37 @@
+admin_county:
+    path:     /
+    defaults: { _controller: "purecircleAdminBundle:County:index" }
+
+admin_county_show:
+    path:     /{id}/show
+    defaults: { _controller: "purecircleAdminBundle:County:show" }
+
+admin_county_new:
+    path:     /new
+    defaults: { _controller: "purecircleAdminBundle:County:new" }
+
+admin_county_create:
+    path:     /create
+    defaults: { _controller: "purecircleAdminBundle:County:create" }
+    methods:  POST
+
+admin_county_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "purecircleAdminBundle:County:edit" }
+
+admin_county_update:
+    path:     /{id}/update
+    defaults: { _controller: "purecircleAdminBundle:County:update" }
+    methods:  [POST, PUT]
+
+admin_county_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "purecircleAdminBundle:County:delete" }
+    methods:  [POST, DELETE]
+
+
+admin_county_remove:
+    path:     /{id}/remove
+    defaults: { _controller: "purecircleAdminBundle:County:remove" }
+  
+
