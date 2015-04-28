@@ -49,6 +49,7 @@
               <!-- settings start -->
               <!-- settings end -->
               <!-- inbox dropdown start-->
+              
               <li id="header_inbox_bar" class="dropdown">
                   <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                       <i class="icon-envelope-alt"></i>
@@ -105,6 +106,7 @@
                       <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                           <img alt="" src="{{asset('bundles/purecirclemain/img/avatar1_small.jpg')}}">
                           <span class="username">{{app.user.username}}</span>
+                         
                           <b class="caret"></b>
                       </a>
                       <ul class="dropdown-menu extended logout">
@@ -170,14 +172,28 @@
                           <span>System Users</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="{{path('user')}}"><i class="icon icon-laptop"> </i>County Managers</a></li>
-                          <li><a  href="{{path('user_register')}}"><i class="icon-plus-sign"> </i>Add County Manager</a></li>
+                          <li><a  href="{{path('admin_user')}}"><i class="icon icon-laptop"> </i>County Managers</a></li>
+                          <li><a  href="{{path('admin_user_new')}}"><i class="icon-plus-sign"> </i>Add County Manager</a></li>
                           <li><a  href="#"><i class="icon-bar-chart"> </i>Reports</a></li>
                           <li><a  href="#"><i class="icon-medkit"> </i>Misc.</a></li>
                       </ul>
                   </li>
-                  {% endif %}
                   
+                  
+                   <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class=" icon-location-arrow"></i>
+                          <span>County</span>
+                      </a>
+                      <ul class="sub">
+                            <li> <a href="{{path('admin_county')}}">Counties</a></li>
+                          <li><a  href="{{path('admin_county_new')}}">Add County</a></li>
+                         
+                        
+                      </ul>
+                  </li> 
+                  {% endif %}
+         
 
 
               </ul>
@@ -185,8 +201,29 @@
           </div>
       </aside>
       <!--sidebar end-->
-      front parent
-      
+      <section id="main-content">
+        <section class="wrapper site-min-height">
+            <!-- page start|| this is here for the flash messages-->
+             {% for messages in app.session.flashbag.all %}
+        {% for message in messages%}
+            <div class="row">
+                  <div class="col-lg-offset-3 col-lg-5">
+                     
+            <div class="alert alert alert-block fade in">
+                                  <button data-dismiss="alert" class="close close-sm" type="button">
+                                      <i class="icon-remove"></i>
+                                  </button>
+                                  <h4>
+                                      <i class="icon-ok-sign"></i>
+                                      {{message}}
+                                  </h4>
+                                 
+                              </div>  
+       
+                  </div>
+              </div>
+            {% endfor %}
+         {% endfor %}
         {% endblock %}
         
         {% block javascripts %}
@@ -195,15 +232,17 @@
             
    <!-- js placed at the end of the document so the pages load faster -->
     <script src="{{asset('bundles/purecirclemain/js/jquery.js')}}"></script>
+    
+     <!--common script for all pages-->
+    
+    
+
+   
     <script src="{{asset('bundles/purecirclemain/js/bootstrap.min.js')}}"></script>
     <script class="include" type="text/javascript" src="{{asset('bundles/purecirclemain/js/jquery.dcjqaccordion.2.7.js')}}"></script>
     <script src="{{asset('bundles/purecirclemain/js/jquery.scrollTo.min.js')}}"></script>
     <script src="{{asset('bundles/purecirclemain/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
     <script src="{{asset('bundles/purecirclemain/js/respond.min.js')}}" ></script>
-
-    <!--common script for all pages-->
-    <script src="{{asset('bundles/purecirclemain/js/myjs.js')}}" ></script>
-    
 
    
 

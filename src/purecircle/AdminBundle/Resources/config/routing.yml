@@ -1,3 +1,7 @@
+purecircle_admin_user:
+    resource: "@purecircleAdminBundle/Resources/config/routing/user.yml"
+    prefix:   /admin/user
+
 purecircle_admin_county:
     resource: "@purecircleAdminBundle/Resources/config/routing/county.yml"
     prefix:   /admin/county
@@ -11,34 +15,3 @@ purecircle_dash:
     defaults: { _controller: purecircleAdminBundle:Admin:index }
             
 
-user_register:
-    path:     admin/user/register
-    defaults: { _controller: purecircleAdminBundle:Admin:register }
-
-
-user_show:
-    path:    admin/user/{id}/show
-    defaults: { _controller: "purecircleAdminBundle:User:show" }
-
-user_new:
-    path:    admin/new
-    defaults: { _controller: "purecircleAdminBundle:User:new" }
-
-user_create:
-    path:     admin/create
-    defaults: { _controller: "purecircleAdminBundle:User:create" }
-    methods:  POST
-
-user_edit:
-    path:     admin/user/{id}/edit
-    defaults: { _controller: "purecircleAdminBundle:User:edit" }
-
-user_update:
-    path:     admin/{id}/update
-    defaults: { _controller: "purecircleAdminBundle:User:update" }
-    methods:  [POST, PUT]
-
-user_delete:
-    path:     admin/{id}/delete
-    defaults: { _controller: "purecircleAdminBundle:User:delete" }
-    methods:  [POST, DELETE]

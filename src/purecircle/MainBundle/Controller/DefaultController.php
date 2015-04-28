@@ -23,5 +23,13 @@ class DefaultController extends Controller {
                         )
         );
     }
+    
+  public function errorAction($message) {
+       return $this->render(
+                    'purecircleMainBundle:Default:404.html.twig', array(
+                    'message' => $message,
+                        )
+        );
+    }  
 
 }

@@ -60,5 +60,10 @@ class County
     public function getCountyName()
     {
         return $this->countyName;
+    } 
+    
+    public function __toString() {
+        return $this->countyName;
+        
     }
 }

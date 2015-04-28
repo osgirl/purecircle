@@ -1,15 +1,281 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    <h1>User creation</h1>
-
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('user') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+{% extends 'base.html.twig' %}
+{% block title %}
+    New County Manager | Purecircle Report
 {% endblock %}
+
+{% block stylesheets %}
+
+    {{parent()}}
+
+
+    <link rel="stylesheet" type="text/css" href="{{asset('bundles/purecirclemain/assets/bootstrap-datepicker/css/datepicker.css')}}" />
+    {% stylesheets
+                
+               filter="cssrewrite" 
+    %}
+
+    <link  rel="stylesheet" href="{{asset_url}}"  />
+    {% endstylesheets %}    
+
+{% endblock %}
+{% block body -%}
+    <!--header start -->
+    {{parent()}}
+    <div class="row">
+        
+                              <div class="form-errors col-lg-offset-3 col-lg-5">
+
+                 {{form_errors(form)}}</div>
+            
+    </div>
+    <div class="row">
+        <div class="col-lg-10">
+            <section class="panel">
+                <header class="panel-heading">
+                    Register new County Manager
+                </header>
+                <div class="panel-body">
+                    <div class="stepy-tab">
+                        <ul id="default-titles" class="stepy-titles clearfix">
+                            <li id="default-title-0" class="current-step">
+                                <div>Profile</div>
+                            </li>
+                            <li id="default-title-1" class="">
+                                <div>Account</div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <form class="form-horizontal" action="{{ path('admin_user_create') }}" method="post" id="default" novalidate>
+                        <fieldset title="Profile" class="step" id="default-step-0">
+                            <legend> </legend>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    Full Name 
+                                </label>
+                                <div class="col-lg-10">
+
+
+                                    {{ form_widget(form.fullname)}}
+                                 
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    Gender
+                                </label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.gender)}}
+                                    
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    Email
+                                </label>
+                                <div class="col-lg-10">
+
+
+                                    {{ form_widget(form.email)}}
+                                    
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    Phone (Contact)
+                                </label>
+
+                                <div class="col-lg-10">
+
+
+                                    {{ form_widget(form.contact,{'attr':{'type':"tel"}})}}
+                                   
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    County
+                                </label>
+
+                                <div class="col-lg-10">
+
+
+                                    {{ form_widget(form.county)}}
+                                  
+
+                                </div>
+                            </div>
+
+                        </fieldset>
+                        <fieldset title="Account" class="step" id="default-step-1" >
+                            <legend> </legend>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    Username
+                                </label>
+
+                                <div class="col-lg-10">
+
+
+                                    {{ form_widget(form.username)}}
+                                  
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    Password
+                                </label>
+
+                                <div class="col-lg-10">
+
+
+                                    {{ form_widget(form.password.first,{'attr':{'class':"form-control"}})}}
+
+                                  
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    Confirm Password
+                                </label>
+
+                                <div class="col-lg-10">
+
+
+                                    {{ form_widget(form.password.second,{'attr':{'class':"form-control"}})}}
+                                   
+
+                                </div>
+                            </div>
+
+                            {#<div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    Date Joined
+                                </label>
+
+                                <div class="col-lg-6">
+
+
+                                    {{ form_widget(form.dateAdded,{'attr':{'class':'form-control default-date-picker '}})}}
+
+                                    {{ form_widget(form.isActive)}}
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    Status
+                                </label>
+
+                                <div class="col-lg-10">
+
+
+                                    {{ form_widget(form.isActive)}}
+
+
+                                </div>
+                            </div> #}
+                            <div class="col-lg-10">
+                                <div class="row">
+
+                                    <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                        Date Joined
+                                    </label>
+                                    <div class="col-lg-4" style=" margin-left: 2%;">
+                                        {{ form_widget(form.dateAdded,{'attr':{'class':'form-control default-date-picker '}})}}
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                {{ form_widget(form.isActive,{'attr':{'class':''}})}}  Activate Account
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+
+                                </label>
+
+                                <div class="col-lg-10 pull-right">
+
+
+                                    {{form_rest(form)}} 
+
+
+                                </div>
+                            </div>  
+                        </fieldset>
+                        <input type="submit" class="finish btn btn-danger hidden" value="Finish"/>
+
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <!-- js placed at the end of the document so the pages load faster -->
+    {{parent()}}
+
+    <!--script for this page-->
+
+
+
+    <script type="text/javascript" src="{{asset('bundles/purecirclemain/assets/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
+
+
+    <script src="{{asset('bundles/purecirclemain/js/jquery.stepy.js')}}"></script>
+    <script type="text/javascript" src="{{asset('bundles/purecirclemain/assets/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
+    <script type="text/javascript" src="{{asset('bundles/purecirclemain/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js')}}"></script>
+    <script src="{{asset('bundles/purecirclemain/js/advanced-form-components.js')}}"></script>
+    <script>
+
+        //step wizard
+
+        $(function () {
+            $('#default').stepy({
+                backLabel: 'Previous',
+                block: true,
+                nextLabel: 'Next',
+                titleClick: true,
+                titleTarget: '.stepy-tab'
+            });
+        });
+    </script>
+
+    {%javascripts 
+          
+    %} 
+
+
+
+
+    {%endjavascripts %}
+
+
+{% endblock %}
+
+
+

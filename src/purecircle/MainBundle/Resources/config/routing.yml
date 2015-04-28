@@ -13,3 +13,7 @@ purecircle_logout:
 login_check:
     path: /login_check
    
+purecircle_error:
+    path:     /login
+    defaults: { _controller: purecircleMainBundle:Default:error}   
+   

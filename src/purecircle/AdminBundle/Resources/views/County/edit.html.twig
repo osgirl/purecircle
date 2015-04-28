@@ -1,16 +1,84 @@
-{% extends '::base.html.twig' %}
+{% extends 'base.html.twig' %}
+{% block title %}
+    New County  | Purecircle Report
+{% endblock %}
+
+{% block stylesheets %}
+
+    {{parent()}}
+
+
+
+    {% stylesheets
+                
+               filter="cssrewrite" 
+    %}
+
+    <link  rel="stylesheet" href="{{asset_url}}"  />
+    {% endstylesheets %}    
+
+{% endblock %}
 
 {% block body -%}
-    <h1>County edit</h1>
 
-    {{ form(edit_form) }}
+    {{parent()}}
+    <!--main content start conti-->
+    
+            <div class="row">
+                <div class="col-lg-10">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Edit  County {{entity.countyName |capitalize}}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_county') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+                        </header>
+                        <div class="panel-body">
+                            <form action="{{ path('admin_county_update',{'id':entity.id})}}" method="post" class="form-horizontal">
+                                <div class="form-group">
+
+                                    <label class="col-sm-3 control-label"> 
+
+                                        {{form_label(edit_form.countyName)}} 
+
+                                    </label>
+
+
+                                    <div class="col-sm-6">
+
+                                        {{ form_widget(edit_form.countyName,{'attr':{'data':entity.countyName|capitalize}})}}
+
+                                    </div>
+                                    {{ form(edit_form) }}           
+                                    {#         {{form(edit_form)}}                    {{ form(edit_form) }}#}
+
+                                </div>  
+                            </form>  
+                            <a class="btn btn-default btn-xs" href="{{path('admin_county') }}">
+                                << Back to the list
+                            </a>
+                                          
+                        </div>
+         {% for messages in app.session.flashbag.all %}
+         {% for message in messages%}
+            <div class="alert alert-success alert-block fade in">
+                                  <button data-dismiss="alert" class="close close-sm" type="button">
+                                      <i class="icon-remove"></i>
+                                  </button>
+                                  <h4>
+                                      <i class="icon-ok-sign"></i>
+                                      {{message}}
+                                  </h4>
+                                 
+                              </div>  
+        {% endfor %}
+         {% endfor %}
+
+
+                </div>
+
+        </section>
+    </div>
+</div>
+</section>
+</section>
 {% endblock %}
+

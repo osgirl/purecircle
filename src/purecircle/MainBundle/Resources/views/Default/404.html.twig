@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    Purecircle Report
+{% endblock %}
+
+{% block stylesheets %}
+
+    {{parent()}}
+
+
+    <!-- Bootstrap core CSS -->
+    
+
+
+    {% stylesheets
+                
+               filter="cssrewrite" 
+    %}
+
+    <link  rel="stylesheet" href="{{asset_url}}"  />
+    {% endstylesheets %}    
+
+{% endblock %}
+{% block body %}
+    <!--header start -->
+
+
+     <body class="body-500">
+
+    <div class="container">
+
+      <section class="error-wrapper">
+          <i class="icon-500"></i>
+          <h1>Ouch!</h1>
+          <h2>{%if message is defined  %}
+          
+          
+          {{message}}
+          
+          {% endif %}
+          </h2>
+          <p class="page-500">Looks like Something went wrong. <a href="{{path('purecircle_logout')}}">Return Home</a></p>
+      </section>
+
+    </div>
+
+
+  </body>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+    {{parent()}}
+
+
+    {%javascripts 
+          
+    %} 
+
+
+
+
+    {%endjavascripts %} 
+
+{% endblock %}
+
+
+

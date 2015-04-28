@@ -1,35 +1,33 @@
-user:
-    path:     admin/user
+admin_user:
+    path:     /
     defaults: { _controller: "purecircleAdminBundle:User:index" }
 
-user_register:
-    path:     admin/user/register
-    defaults: { _controller: "purecircleAdminBundle:Admin:register" }
-
-
-user_show:
-    path:    admin/user/{id}/show
+admin_user_show:
+    path:     /{id}/show
     defaults: { _controller: "purecircleAdminBundle:User:show" }
 
-user_new:
-    path:    /new
+admin_user_new:
+    path:     /new
     defaults: { _controller: "purecircleAdminBundle:User:new" }
 
-user_create:
-    path:     admin/create
+admin_user_create:
+    path:     /create
     defaults: { _controller: "purecircleAdminBundle:User:create" }
     methods:  POST
 
-user_edit:
-    path:     admin/{id}/edit
+admin_user_edit:
+    path:     /{id}/edit
     defaults: { _controller: "purecircleAdminBundle:User:edit" }
 
-user_update:
-    path:     admin/{id}/update
+admin_user_update:
+    path:     /{id}/update
     defaults: { _controller: "purecircleAdminBundle:User:update" }
     methods:  [POST, PUT]
 
-user_delete:
-    path:     admin/{id}/delete
+admin_user_delete:
+    path:     /{id}/delete
     defaults: { _controller: "purecircleAdminBundle:User:delete" }
     methods:  [POST, DELETE]
+admin_user_remove:
+    path:     /{id}/remove
+    defaults: { _controller: "purecircleAdminBundle:User:remove" }

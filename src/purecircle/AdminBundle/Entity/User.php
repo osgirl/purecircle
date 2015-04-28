@@ -1,9 +1,11 @@
 <?php
 
 namespace purecircle\AdminBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -11,8 +13,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table()
  * @ORM\Entity
  * @UniqueEntity(fields="email", message="Email already taken")
+ * @UniqueEntity(fields="username", message="Username already taken")
  */
-class User implements UserInterface {
+class User implements AdvancedUserInterface {
 
     /**
      * @var integer
@@ -25,35 +28,67 @@ class User implements UserInterface {
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *  message = "Full name cannot be blank")
+     * @Assert\Length( min = "4",max = "50", minMessage = "Fuul Name is too short", maxMessage = "Please less than 50 chars") 
+     * @ORM\Column(name="fullname", type="string", length=255)
+     */
+    private $fullname;
+
+    /**
+     * @var string
+     * @Assert\NotBlank(
+     *  message = "Username cannot be blank")
+     * @Assert\Length( min = "3",max = "50", minMessage = "Username is oo short", maxMessage = "Username is too long" )
      * @ORM\Column(name="username", type="string", length=255,unique=true)
      */
     private $username;
 
     /**
+     * @var \DateTime
+     * @ORM\Column(name="dateAdded", type="date")
+     */
+    private $dateAdded;
+
+    /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *  message = "The Password Field cannot be blank")
+     * @Assert\Length( min = "4", minMessage = "Password is too short")
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
-    
+
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *  message = "The email cannot be blank"
+     * )
+     * @Assert\Email(
+     *  message = "The email '{{ value }}' is not a valid email."
+     * )
      * @ORM\Column(name="email", type="string", length=255,unique=true)
      */
     private $email;
-    
+
     /**
      * @var string
-     *
+     * @Assert\NotBlank
+     * @ORM\Column(name="gender", type="string", length=255)
+     */
+    private $gender;
+
+    /**
+     * @var string
      * @ORM\Column(name="county", type="string", length=255)
      */
     private $county;
-    
+
     /**
      * @var string
-     *
+     * *@Assert\NotBlank(
+     *  message = "The Contact field cannot be blank")
+     * @Assert\Length(min=9,minMessage="Contact Field lenght too short")
      * @ORM\Column(name="contact", type="string", length=255)
      */
     private $contact;
@@ -61,10 +96,9 @@ class User implements UserInterface {
     /**
      * @var string
      *
-     * @ORM\Column(name="is_active", type="boolean")
+     * @ORM\Column(name="is_active", type="boolean",nullable=true)
      */
     private $isActive;
-
 
     /**
      * Get id
@@ -76,8 +110,7 @@ class User implements UserInterface {
     }
 
     public function __construct() {
-        $this->isActive = true;
-
+      
     }
 
     /**
@@ -108,7 +141,7 @@ class User implements UserInterface {
      * @return User
      */
     public function setPassword($password) {
-        $this->password = password_hash($password,PASSWORD_BCRYPT);
+        $this->password = password_hash($password, PASSWORD_BCRYPT);
 
         return $this;
     }
@@ -158,17 +191,11 @@ class User implements UserInterface {
 
     public function getRoles() {
         return array('ROLE_USER');
-        
     }
 
     public function getSalt() {
         return null;
     }
-
-    
-
-
-   
 
     /**
      * Set county
@@ -176,8 +203,7 @@ class User implements UserInterface {
      * @param string $county
      * @return User
      */
-    public function setCounty($county)
-    {
+    public function setCounty($county) {
         $this->county = $county;
 
         return $this;
@@ -188,8 +214,7 @@ class User implements UserInterface {
      *
      * @return string 
      */
-    public function getCounty()
-    {
+    public function getCounty() {
         return $this->county;
     }
 
@@ -199,8 +224,7 @@ class User implements UserInterface {
      * @param boolean $isActive
      * @return User
      */
-    public function setIsActive($isActive)
-    {
+    public function setIsActive($isActive) {
         $this->isActive = $isActive;
 
         return $this;
@@ -212,8 +236,7 @@ class User implements UserInterface {
      * @param string $contact
      * @return User
      */
-    public function setContact($contact)
-    {
+    public function setContact($contact) {
         $this->contact = $contact;
 
         return $this;
@@ -224,8 +247,87 @@ class User implements UserInterface {
      *
      * @return string 
      */
-    public function getContact()
-    {
+    public function getContact() {
         return $this->contact;
     }
+
+    /**
+     * Set fullname
+     *
+     * @param string $fullname
+     * @return User
+     */
+    public function setFullname($fullname) {
+        $this->fullname = $fullname;
+
+        return $this;
+    }
+
+    /**
+     * Get fullname
+     *
+     * @return string 
+     */
+    public function getFullname() {
+        return $this->fullname;
+    }
+
+    /**
+     * Set dateAdded
+     *
+     * @param \DateTime $dateAdded
+     * @return User
+     */
+    public function setDateAdded($dateAdded) {
+        $this->dateAdded = $dateAdded;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAdded
+     *
+     * @return \DateTime 
+     */
+    public function getDateAdded() {
+        return $this->dateAdded;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     * @return User
+     */
+    public function setGender($gender) {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string 
+     */
+    public function getGender() {
+        return $this->gender;
+    }
+
+    public function isAccountNonExpired() {
+        return TRUE;
+    }
+
+    public function isAccountNonLocked() {
+         return TRUE;
+    }
+
+    public function isCredentialsNonExpired() {
+         return TRUE;
+    }
+
+    public function isEnabled() {
+         return $this->isActive;
+    }
+
 }

@@ -22,10 +22,13 @@
 {% block body -%}
  {{parent()}}
     
+    
+  <section id="main-content">
+          <section class="wrapper">
               <!-- page start-->
               <section class="panel">
                   <header class="panel-heading">
-                      <a href="{{path("admin_user")}}">< < </a>   County Manager <i class="label label-success" >{{ entity.username |capitalize}}</i> Details
+                      County Manager <i class="label label-success" >{{ entity.username |capitalize}}</i> Details
                   </header>
               </section>
 <div class="row">
@@ -37,10 +40,8 @@
                                   <a href="#">
                                       <img alt="" src="{{asset('bundles/purecirclemain/img/profile-avatar.jpg')}}">
                                   </a>
-                                      <h1>{{ entity.fullname |capitalize }}</h1>
-                                      <p>Gender : {{ entity.gender|capitalize }}</p>
-                                      <p>{{ entity.email }}</p>
-                                  
+                                      <h1>{{ entity.username |capitalize }}</h1>
+                                  <p>{{ entity.email }}</p>
                                   <i class="icon-map-marker"></i> {{ entity.county |capitalize }}   | <i class="icon-mobile-phone"> </i> {{ entity.contact}}
                               </div>
 
