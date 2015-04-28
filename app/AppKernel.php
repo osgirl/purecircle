@@ -19,8 +19,7 @@ class AppKernel extends Kernel {
             new AppBundle\AppBundle(),
             new purecircle\MainBundle\purecircleMainBundle(),
             new purecircle\AdminBundle\purecircleAdminBundle(),
-            
-            
+            new purecircle\ManagerBundle\purecircleManagerBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

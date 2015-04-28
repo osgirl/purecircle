@@ -1,0 +1,7 @@
+purecircle_manager_advisor:
+    resource: "@purecircleManagerBundle/Resources/config/routing/techadv.yml"
+    prefix:   /manager/advisor
+
+purecircle_manager:
+    path:    /manager
+    defaults: { _controller: purecircleManagerBundle:Default:index }

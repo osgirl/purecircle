@@ -1,0 +1,30 @@
+advisor:
+    path:     /
+    defaults: { _controller: "purecircleManagerBundle:TechAdv:index" }
+
+advisor_show:
+    path:     /{id}/show
+    defaults: { _controller: "purecircleManagerBundle:TechAdv:show" }
+
+advisor_new:
+    path:     /new
+    defaults: { _controller: "purecircleManagerBundle:TechAdv:new" }
+
+advisor_create:
+    path:     /create
+    defaults: { _controller: "purecircleManagerBundle:TechAdv:create" }
+    methods:  POST
+
+advisor_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "purecircleManagerBundle:TechAdv:edit" }
+
+advisor_update:
+    path:     /{id}/update
+    defaults: { _controller: "purecircleManagerBundle:TechAdv:update" }
+    methods:  [POST, PUT]
+
+advisor_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "purecircleManagerBundle:TechAdv:delete" }
+    methods:  [POST, DELETE]

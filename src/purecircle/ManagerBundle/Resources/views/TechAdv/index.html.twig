@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+  Technical Advisors | Purecircle Report
+{% endblock %}
+
+{% block stylesheets %}
+
+    {{parent()}}
+
+
+
+    {% stylesheets
+                
+               filter="cssrewrite" 
+    %}
+
+    <link  rel="stylesheet" href="{{asset_url}}"  />
+    {% endstylesheets %}    
+
+{% endblock %}
+
+{% block body -%}
+    {{parent()}}
+    <h1>TechAdv list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Gender</th>
+                <th>Contact</th>
+                <th>Idnumber</th>
+                <th>Payrollnumber</th>
+                <th>Region</th>
+                <th>Village</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Managerid</th>
+                <th>Remarks</th>
+                <th>Dateadded</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('advisor_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.firstname }}</td>
+                <td>{{ entity.lastname }}</td>
+                <td>{{ entity.gender }}</td>
+                <td>{{ entity.contact }}</td>
+                <td>{{ entity.idNumber }}</td>
+                <td>{{ entity.payrollNumber }}</td>
+                <td>{{ entity.region }}</td>
+                <td>{{ entity.village }}</td>
+                <td>{{ entity.latitude }}</td>
+                <td>{{ entity.longitude }}</td>
+                <td>{{ entity.managerId }}</td>
+                <td>{{ entity.remarks }}</td>
+                <td>{% if entity.dateAdded %}{{ entity.dateAdded|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('advisor_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('advisor_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('advisor_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

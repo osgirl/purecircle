@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table()
  * @ORM\Entity
- * @UniqueEntity(fields="email", message="Email already taken")
+ * @UniqueEntity(fields="email", message="Email already Exists")
  * @UniqueEntity(fields="username", message="Username already taken")
  */
 class User implements AdvancedUserInterface {
@@ -38,7 +38,7 @@ class User implements AdvancedUserInterface {
     /**
      * @var string
      * @Assert\NotBlank(
-     *  message = "Username cannot be blank")
+     * message = "Username cannot be blank")
      * @Assert\Length( min = "3",max = "50", minMessage = "Username is oo short", maxMessage = "Username is too long" )
      * @ORM\Column(name="username", type="string", length=255,unique=true)
      */
@@ -73,12 +73,15 @@ class User implements AdvancedUserInterface {
 
     /**
      * @var string
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *  message = "The gender field cannot be blank")
      * @ORM\Column(name="gender", type="string", length=255)
      */
     private $gender;
 
     /**
+     *  @Assert\NotBlank(
+     *  message = "The County field cannot be blank")
      * @var string
      * @ORM\Column(name="county", type="string", length=255)
      */
@@ -86,7 +89,7 @@ class User implements AdvancedUserInterface {
 
     /**
      * @var string
-     * *@Assert\NotBlank(
+     * @Assert\NotBlank(
      *  message = "The Contact field cannot be blank")
      * @Assert\Length(min=9,minMessage="Contact Field lenght too short")
      * @ORM\Column(name="contact", type="string", length=255)
@@ -110,7 +113,7 @@ class User implements AdvancedUserInterface {
     }
 
     public function __construct() {
-      
+        
     }
 
     /**
@@ -319,15 +322,15 @@ class User implements AdvancedUserInterface {
     }
 
     public function isAccountNonLocked() {
-         return TRUE;
+        return TRUE;
     }
 
     public function isCredentialsNonExpired() {
-         return TRUE;
+        return TRUE;
     }
 
     public function isEnabled() {
-         return $this->isActive;
+        return $this->isActive;
     }
 
 }

@@ -1,3 +1,7 @@
+purecircle_manager:
+    resource: "@purecircleManagerBundle/Resources/config/routing.yml"
+    prefix:   /
+
 purecircle_admin:
     resource: "@purecircleAdminBundle/Resources/config/routing.yml"
     prefix:   /
