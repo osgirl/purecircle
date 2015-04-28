@@ -2,9 +2,9 @@
 
 namespace purecircle\ManagerBundle\Controller;
 
+use purecircle\classes\Manager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use purecircle\ManagerBundle\Entity\TechAdv;
 use purecircle\ManagerBundle\Form\TechAdvType;
 
@@ -12,31 +12,31 @@ use purecircle\ManagerBundle\Form\TechAdvType;
  * TechAdv controller.
  *
  */
-class TechAdvController extends Controller
-{
+class TechAdvController extends Controller {
 
     /**
      * Lists all TechAdv entities.
      *
      */
-    public function indexAction()
-    {
-        
+    public function indexAction() {
+
         $em = $this->getDoctrine()->getManager();
-        $manager=  $this->getUser()->getId();
+       
+        $manager = new Manager();
+        $managerId = $manager->getManager();
         $entities = $em->getRepository('purecircleManagerBundle:TechAdv')->findAll();
+        
         return $this->render('purecircleManagerBundle:TechAdv:index.html.twig', array(
-            'entities' => $entities,
-            'manager'=>$manager
-            
+                    'entities' => $entities,
+                    'manager' => $managerId
         ));
     }
+
     /**
      * Creates a new TechAdv entity.
      *
      */
-    public function createAction(Request $request)
-    {
+    public function createAction(Request $request) {
         $entity = new TechAdv();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -50,8 +50,8 @@ class TechAdvController extends Controller
         }
 
         return $this->render('purecircleManagerBundle:TechAdv:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
+                    'entity' => $entity,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -62,8 +62,7 @@ class TechAdvController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(TechAdv $entity)
-    {
+    private function createCreateForm(TechAdv $entity) {
         $form = $this->createForm(new TechAdvType(), $entity, array(
             'action' => $this->generateUrl('advisor_create'),
             'method' => 'POST',
@@ -78,14 +77,13 @@ class TechAdvController extends Controller
      * Displays a form to create a new TechAdv entity.
      *
      */
-    public function newAction()
-    {
+    public function newAction() {
         $entity = new TechAdv();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('purecircleManagerBundle:TechAdv:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
+                    'entity' => $entity,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -93,8 +91,7 @@ class TechAdvController extends Controller
      * Finds and displays a TechAdv entity.
      *
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('purecircleManagerBundle:TechAdv')->find($id);
@@ -106,8 +103,8 @@ class TechAdvController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('purecircleManagerBundle:TechAdv:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+                    'entity' => $entity,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -115,8 +112,7 @@ class TechAdvController extends Controller
      * Displays a form to edit an existing TechAdv entity.
      *
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('purecircleManagerBundle:TechAdv')->find($id);
@@ -129,21 +125,20 @@ class TechAdvController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('purecircleManagerBundle:TechAdv:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'entity' => $entity,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-    * Creates a form to edit a TechAdv entity.
-    *
-    * @param TechAdv $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(TechAdv $entity)
-    {
+     * Creates a form to edit a TechAdv entity.
+     *
+     * @param TechAdv $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createEditForm(TechAdv $entity) {
         $form = $this->createForm(new TechAdvType(), $entity, array(
             'action' => $this->generateUrl('manager_update', array('id' => $entity->getId())),
             'method' => 'PUT',
@@ -153,12 +148,12 @@ class TechAdvController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing TechAdv entity.
      *
      */
-    public function updateAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('purecircleManagerBundle:TechAdv')->find($id);
@@ -178,17 +173,17 @@ class TechAdvController extends Controller
         }
 
         return $this->render('purecircleManagerBundle:TechAdv:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'entity' => $entity,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a TechAdv entity.
      *
      */
-    public function deleteAction(Request $request, $id)
-    {
+    public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
@@ -214,13 +209,13 @@ class TechAdvController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
-    {
+    private function createDeleteForm($id) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('manager_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
+                        ->setAction($this->generateUrl('manager_delete', array('id' => $id)))
+                        ->setMethod('DELETE')
+                        ->add('submit', 'submit', array('label' => 'Delete'))
+                        ->getForm()
         ;
     }
+
 }
