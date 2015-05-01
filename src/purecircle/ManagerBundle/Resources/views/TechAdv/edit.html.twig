@@ -6,7 +6,7 @@
 {% block stylesheets %}
 
     {{parent()}}
-
+ <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
 
     <link rel="stylesheet" type="text/css" href="{{asset('bundles/purecirclemain/assets/bootstrap-datepicker/css/datepicker.css')}}" />
     {% stylesheets
@@ -34,7 +34,7 @@
         <div class="col-lg-offset-1 col-lg-10">
             <section class="panel">
                 <header class="panel-heading">
-                   Edit Tech Advisor {{entity.firstname}}
+                    Edit Tech Advisor {{entity.firstname}}
                 </header>
                 <div class="panel-body">
                     <div class="stepy-tab">
@@ -138,8 +138,8 @@
                             </div>
                             <div class="form-group">
                                 <div id="getLatLong" style="width:100%; height:300px;margin:auto">
-                                    
-                                    
+
+
                                 </div>
                                 <div class="col-lg-10">
                                     <div class="row">
@@ -175,9 +175,7 @@
 
                                 <div class="col-lg-10">
 
-
                                     {{ form_widget(edit_form.idNumber)}}
-
 
                                 </div>
                             </div>
@@ -208,18 +206,18 @@
                                         {{ form_widget(edit_form.dateAdded,{'attr':{'class':'form-control default-date-picker '}})}}
                                     </div>
                                     <div class="col-lg-4" style=" margin-left: 2%;">
-                                      {#  {{ form_widget(edit_form.managerId)}}#}
+                                        {#  {{ form_widget(edit_form.managerId)}}#}
                                     </div>
                                 </div>
 
                             </div>
-                                    <div class="form-group" >
+                            <div class="form-group" >
 
 
 
                                 <div class="col-lg-10"style="margin: 3% 16%;">
 
-                                  
+
                                     {{form_widget(edit_form.remarks)}} 
 
 
@@ -265,9 +263,9 @@
     <script type="text/javascript" src="{{asset('bundles/purecirclemain/assets/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
     <script type="text/javascript" src="{{asset('bundles/purecirclemain/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js')}}"></script>
     <script src="{{asset('bundles/purecirclemain/js/advanced-form-components.js')}}"></script>
-    
-            <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
-            <script src="{{asset('bundles/purecirclemain/js/locationpicker.jquery.js')}}"></script>
+
+   
+    <script src="{{asset('bundles/purecirclemain/js/locationpicker.jquery.js')}}"></script>
     <script>
 
         //step wizard
@@ -282,27 +280,27 @@
             });
         });
     </script>
-<script>
-$('#getLatLong').locationpicker({
-	location: {latitude: 5.653607, longitude:-0.208883},
-	radius: 50,
-        inputBinding: {
-        latitudeInput: $('#purecircle_managerbundle_techadv_latitude'),
-        longitudeInput: $('#purecircle_managerbundle_techadv_longitude'),
-         locationNameInput: $('#purecircle_managerbundle_techadv_village')
-       
-    }
-	});
+    <script>
+        $('#getLatLong').locationpicker({
+            location: {latitude: 5.653607, longitude: -0.208883},
+            radius: 50,
+            inputBinding: {
+                latitudeInput: $('#purecircle_managerbundle_techadv_latitude'),
+                longitudeInput: $('#purecircle_managerbundle_techadv_longitude'),
+                locationNameInput: $('#purecircle_managerbundle_techadv_village')
+
+            }
+        });
+    </script>
 </script>
-</script>
-    {%javascripts 
+{%javascripts 
           
-    %} 
+%} 
 
 
 ,
 
-    {%endjavascripts %}
+{%endjavascripts %}
 
 
 {% endblock %}
