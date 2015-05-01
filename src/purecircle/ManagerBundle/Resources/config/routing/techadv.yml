@@ -28,3 +28,8 @@ advisor_delete:
     path:     /{id}/delete
     defaults: { _controller: "purecircleManagerBundle:TechAdv:delete" }
     methods:  [POST, DELETE]
+
+advisor_remove:
+    path:     /{id}/remove
+    defaults: { _controller: "purecircleManagerBundle:TechAdv:remove" }
+  

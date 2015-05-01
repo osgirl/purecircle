@@ -21,11 +21,11 @@ class TechAdvController extends Controller {
     public function indexAction() {
 
         $em = $this->getDoctrine()->getManager();
-       
-        $manager = new Manager();
-        $managerId = $manager->getManager();
+
+        $managerId = $this->getUser()->getId();
+
         $entities = $em->getRepository('purecircleManagerBundle:TechAdv')->findAll();
-        
+
         return $this->render('purecircleManagerBundle:TechAdv:index.html.twig', array(
                     'entities' => $entities,
                     'manager' => $managerId
@@ -46,7 +46,7 @@ class TechAdvController extends Controller {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('manager_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('advisor_show', array('id' => $entity->getId())));
         }
 
         return $this->render('purecircleManagerBundle:TechAdv:new.html.twig', array(
@@ -67,8 +67,25 @@ class TechAdvController extends Controller {
             'action' => $this->generateUrl('advisor_create'),
             'method' => 'POST',
         ));
+        $CM = $this->getUser()->getId();
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('managerId', 'hidden', array(
+            'read_only' => true,
+            'data' => $CM,
+            'error_bubbling' => true,
+            "attr" => array(
+                "class" => "form-control",
+                'placeholder' => 'Manager Info'
+            )
+        ));
+
+        $form->add('submit', 'submit', array(
+            'label' => 'Create',
+            'attr' => array(
+                'class' => 'pull-right btn btn-success btn-shadow'
+            )
+        ));
+
 
         return $form;
     }
@@ -140,11 +157,16 @@ class TechAdvController extends Controller {
      */
     private function createEditForm(TechAdv $entity) {
         $form = $this->createForm(new TechAdvType(), $entity, array(
-            'action' => $this->generateUrl('manager_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('advisor_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array(
+            'label' => 'Update',
+            'attr' => array(
+                'class' => 'pull-right btn btn-success btn-shadow '
+            )
+        ));
 
         return $form;
     }
@@ -169,7 +191,7 @@ class TechAdvController extends Controller {
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('manager_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('advisor_edit', array('id' => $id)));
         }
 
         return $this->render('purecircleManagerBundle:TechAdv:edit.html.twig', array(
@@ -199,7 +221,7 @@ class TechAdvController extends Controller {
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('manager'));
+        return $this->redirect($this->generateUrl('advisor'));
     }
 
     /**
@@ -211,11 +233,33 @@ class TechAdvController extends Controller {
      */
     private function createDeleteForm($id) {
         return $this->createFormBuilder()
-                        ->setAction($this->generateUrl('manager_delete', array('id' => $id)))
+                        ->setAction($this->generateUrl('advisor_delete', array('id' => $id)))
                         ->setMethod('DELETE')
                         ->add('submit', 'submit', array('label' => 'Delete'))
                         ->getForm()
         ;
+    }
+
+    public function removeAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $manager = $em->getRepository('purecircleManagerBundle:TechAdv')->find($id);
+
+        if (!$manager) {
+            //user tried to be wise here
+
+            return $this->redirect($this->generateUrl('purecircle_logout'));
+        } else {
+
+            $removed = $manager->getpayRollNumber();
+            $em->remove($manager);
+            $em->flush();
+
+            $this->addFlash(
+                    "success", "Advisor with  " . $removed . " removed"
+            );
+
+            return $this->redirect($this->generateUrl('advisor'));
+        }
     }
 
 }

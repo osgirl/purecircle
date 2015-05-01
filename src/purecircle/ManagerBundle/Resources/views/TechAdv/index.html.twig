@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-  Technical Advisors | Purecircle Report
+    Technical Advisors | Purecircle Report
 {% endblock %}
 
 {% block stylesheets %}
@@ -21,65 +21,116 @@
 
 {% block body -%}
     {{parent()}}
-    <h1>Technical Advisors list for {{manager}}</h1>
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Gender</th>
-                <th>Contact</th>
-                <th>Idnumber</th>
-                <th>Payrollnumber</th>
-                <th>Region</th>
-                <th>Village</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
-                <th>Managerid</th>
-                <th>Remarks</th>
-                <th>Dateadded</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('advisor_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.firstname }}</td>
-                <td>{{ entity.lastname }}</td>
-                <td>{{ entity.gender }}</td>
-                <td>{{ entity.contact }}</td>
-                <td>{{ entity.idNumber }}</td>
-                <td>{{ entity.payrollNumber }}</td>
-                <td>{{ entity.region }}</td>
-                <td>{{ entity.village }}</td>
-                <td>{{ entity.latitude }}</td>
-                <td>{{ entity.longitude }}</td>
-                <td>{{ entity.managerId }}</td>
-                <td>{{ entity.remarks }}</td>
-                <td>{% if entity.dateAdded %}{{ entity.dateAdded|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('advisor_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('advisor_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="row  col-lg-12">   
+        <section class="panel">
 
-        <ul>
-        <li>
-            <a href="{{ path('advisor_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+            <header class="panel-heading">
+                Technical Advisors list for {{manager}}
+            </header>
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <div class="clearfix">
+                        <div class="btn-group">
+                            <a href="{{ path('advisor_new') }}" ><button  class="btn btn-success btn-shadow btn-mini">
+                                    <i class="icon-plus"> </i> Add  Tech Advisor
+                                </button></a>
+                        </div>
+                        <div class="btn-group pull-right">
+                            <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="icon-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="#">Print</a></li>
+                                <li><a href="#">Save as PDF</a></li>
+                                <li><a href="#">Export to Excel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                        <thead>
+                            <tr>
+                               
+                                <th>Name</th>
+                             
+                                <th>Contact</th>
+
+                                <th>Village</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for entity in entities %}
+                                <tr>
+{#                                    <td><a href="{{ path('advisor_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                                    <td>{{ entity.firstname }} {{ entity.lastname }}</td>
+
+{#                                    <td>{{ entity.gender }}</td>#}
+                                    <td>{{ entity.contact }}</td>
+                                  {#  <td>{{ entity.idNumber }}</td>
+                                    <td>{{ entity.payrollNumber }}</td>
+                                    <td>{{ entity.region }}</td>#}
+                                  
+                                    <td>{{ entity.village }}</td>
+                                   {# <td>{{ entity.latitude }}</td>
+                                    <td>{{ entity.longitude }}</td>
+                                    <td>{{ entity.managerId }}</td>
+                                    <td>{{ entity.remarks }}</td>
+                                  #}
+                                   <td>{% if entity.dateAdded %}{{ entity.dateAdded|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    <td>
+                                                <div class="btn-group">
+                                                    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Actions <span class="caret"></span></button>
+                                                    <ul role="menu" class="dropdown-menu">
+                                                        <li> <a href="{{ path('advisor_show', { 'id': entity.id }) }}"><i class="icon-eye-open" > </i>View Details</a></li>
+                                                        <li><a  href="{{ path('advisor_edit', { 'id': entity.id }) }}"><i class="icon-edit-sign" > </i>Edit Account</a></li>
+                                                       <li> <a id="remove" class="{{entity.firstname}}" href="{{ path('advisor_remove',{'id':entity.id})}}"><i class="icon-remove-sign"> Delete</i></a></li>
+                                                    </ul>
+                                                </div>
+
+                                            </td> 
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+
+
+    {{ parent() }}
+<script src="{{asset('bundles/purecirclemain/js/myjs.js')}}" ></script>
+    <script type="text/javascript" src="{{asset('bundles/purecirclemain/assets/data-tables/jquery.dataTables.js')}}"></script>
+    <script type="text/javascript" src="{{asset('bundles/purecirclemain/assets/data-tables/DT_bootstrap.js')}}"></script>
+
+
+    <!--script for this page only-->
+    <script src="{{asset('bundles/purecirclemain/js/editable-table.js')}}"></script>
+
+    <!-- END JAVASCRIPTS -->
+    <script>
+        jQuery(document).ready(function () {
+            EditableTable.init();
+        });
+    </script>
+    {% javascripts 
+    %} 
+
+    <script type="text/javascript" 
+
+
+            src="{{asset_url}}">
+    </script>
+
+
+    {%endjavascripts %} 
+
+{% endblock %}
+
+

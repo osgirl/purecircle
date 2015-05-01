@@ -3,256 +3,257 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        
+
         {% block stylesheets %}
             <!-- Bootstrap core CSS -->
-    <link type="text/css" href="{{asset('bundles/purecirclemain/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link type="text/css" href="{{asset('bundles/purecirclemain/css/bootstrap-reset.css')}}" rel="stylesheet">
-    <!--external css-->
-    <link type="text/css" href="{{asset('bundles/purecirclemain/assets/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link  type="text/css" href="{{asset('bundles/purecirclemain/css/style.css')}}" rel="stylesheet">
+            <link type="text/css" href="{{asset('bundles/purecirclemain/css/bootstrap.min.css')}}" rel="stylesheet">
+            <link type="text/css" href="{{asset('bundles/purecirclemain/css/bootstrap-reset.css')}}" rel="stylesheet">
+            <!--external css-->
+            <link type="text/css" href="{{asset('bundles/purecirclemain/assets/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
+            <!-- Custom styles for this template -->
+            <link  type="text/css" href="{{asset('bundles/purecirclemain/css/style.css')}}" rel="stylesheet">
+            <link  type="text/css" href="{{asset('bundles/purecirclemain/css/imagead.css')}}" rel="stylesheet">
+           
 
-        
-         {% stylesheets
+            {% stylesheets
             
                 
                filter="cssrewrite" 
-         %}
+            %}
 
-         <link  rel="stylesheet" href="{{asset_url}}"  />
-             {% endstylesheets %}    
-          
-        
-        
+            <link  rel="stylesheet" href="{{asset_url}}"  />
+            {% endstylesheets %}    
+
+
+
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-      <script src="{{asset('bundles/purecirclemain/js/html5shiv.js')}}"></script>
-      <script src="{{asset('bundles/purecirclemain/js/respond.min.js')}}"></script>
-    <![endif]-->
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+        <!--[if lt IE 9]>
+          <script src="{{asset('bundles/purecirclemain/js/html5shiv.js')}}"></script>
+          <script src="{{asset('bundles/purecirclemain/js/respond.min.js')}}"></script>
+        <![endif]-->
     </head>
     <body>
         {% block body %}
-        
-        <header class="header white-bg">
-          <div class="sidebar-toggle-box">
-              <div data-original-title="Menu" data-placement="right" class="icon-reorder tooltips"></div>
-          </div>
-          <!--logo start-->
-         <a class="logo" >pure<span>Circle</span></a>
-          <!--logo end-->
-          <div class="nav notify-row" id="top_menu">
-            <!--  notification start -->
-            <ul class="nav top-menu">
-              <!-- settings start -->
-              <!-- settings end -->
-              <!-- inbox dropdown start-->
-              
-              <li id="header_inbox_bar" class="dropdown">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                      <i class="icon-envelope-alt"></i>
-                      <span class="badge bg-important">5</span>
-                  </a>
-                  <ul class="dropdown-menu extended inbox">
-                      <div class="notify-arrow notify-arrow-red"></div>
-                      <li>
-                          <p class="red">You have 5 new messages</p>
-                      </li>
-                      <li>
-                          <a href="#">
-                              <span class="photo"><img alt="avatar" src="./img/avatar-mini.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Saviour Dela</span>
-                                    <span class="time">Just now</span>
-                                    </span>
-                                    <span class="message">
-                                        Hello, The farmers are in.
-                                    </span>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#">
-                              <span class="photo"><img alt="avatar" src="./img/avatar-mini2.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Mawuli</span>
-                                    <span class="time">10 mins</span>
-                                    </span>
-                                    <span class="message">
-                                     Hi, Please how far with GRAD 
-                                    </span>
-                          </a>
-                      </li>
-                      
-                      <li>
-                          <a href="#">See all messages</a>
-                      </li>
-                  </ul>
-              </li>
-              <!-- inbox dropdown end -->
-             
-          
-              <!-- notification dropdown end -->
-          </ul>
-          </div>
-          <div class="top-nav ">
-              <ul class="nav pull-right top-menu">
-                  <li>
-                      <input type="text" class="form-control search" placeholder="Search">
-                  </li>
-                  <!-- user login dropdown start-->
-                  <li class="dropdown">
-                      <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                          <img alt="" src="{{asset('bundles/purecirclemain/img/avatar1_small.jpg')}}">
-                          <span class="username">{{app.user.username}}</span>
-                         
-                          <b class="caret"></b>
-                      </a>
-                      <ul class="dropdown-menu extended logout">
-                          <div class="log-arrow-up"></div>
-                          <li><a href="#"><i class=" icon-suitcase"></i>Profile</a></li>
-                          <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
-                          <li>
-                      <a  href="#">
-                          <i class="icon-lock"></i>
-                          <span>Lock Account</span>
-                      </a>
-                  </li>
-                          <li><a href="{{path('purecircle_logout')}}"><i class="icon-key"></i> Log Out</a></li>
-                      </ul>
-                  </li>
-                  <!-- header ends here -->
-              </ul>
-          </div>
-      </header>
-         <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
-                  <li>
-                      <a href="{{path('purecircle_dash')}}">
-                          <i class="icon-dashboard"></i>
-                          <span>Dashboard</span>
-                      </a>
-                  </li>
 
-                 
+            <header class="header white-bg">
+                <div class="sidebar-toggle-box">
+                    <div data-original-title="Menu" data-placement="right" class="icon-reorder tooltips"></div>
+                </div>
+                <!--logo start-->
+                <a class="logo" >pure<span>Circle</span></a>
+                <!--logo end-->
+                <div class="nav notify-row" id="top_menu">
+                    <!--  notification start -->
+                    <ul class="nav top-menu">
+                        <!-- settings start -->
+                        <!-- settings end -->
+                        <!-- inbox dropdown start-->
 
-                  <li class="sub-menu">
-                      <a href="javascript:;">
-                          <i class="icon-group"></i>
-                          <span>Actors</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="{{path('advisor')}}"><i class="icon-truck"> </i>Technical Advisor</a></li>
-                          <li><a  href="calendar.html"><i class="icon-lemon"> </i>Farmer</a></li>
-                          <li><a  href="gallery.html"><i class="icon-leaf"> </i>Leaf Clerk</a></li>
-                          <li><a  href="todo_list.html"><i class="icon-"> </i>Mini Agent</a></li>
-                      </ul>
-                  </li>
-                  
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class=" icon-bar-chart"></i>
-                          <span>Reports</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="morris.html">Summary</a></li>
-                          <li><a  href="chartjs.html">Farmer & TA Report</a></li>
-                          <li><a  href="flot_chart.html">Planting</a></li>
-                          <li><a  href="xchart.html">_W_Et0ie9</a></li>
-                      </ul>
-                  </li>
-                  {% if is_granted('ROLE_ADMIN') %}
-                  <li class="sub-menu">
-                      <a href="javascript:;">
-                          <i class="icon-fire"></i>
-                          <span>System Users</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="{{path('admin_user')}}"><i class="icon icon-laptop"> </i>County Managers</a></li>
-                          <li><a  href="{{path('admin_user_new')}}"><i class="icon-plus-sign"> </i>Add County Manager</a></li>
-                          <li><a  href="#"><i class="icon-bar-chart"> </i>Reports</a></li>
-                          <li><a  href="#"><i class="icon-medkit"> </i>Misc.</a></li>
-                      </ul>
-                  </li>
-                  
-                  
-                   <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class=" icon-location-arrow"></i>
-                          <span>County</span>
-                      </a>
-                      <ul class="sub">
-                            <li> <a href="{{path('admin_county')}}">Counties</a></li>
-                          <li><a  href="{{path('admin_county_new')}}">Add County</a></li>
-                         
-                        
-                      </ul>
-                  </li> 
-                  {% endif %}
-         
+                        <li id="header_inbox_bar" class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <i class="icon-envelope-alt"></i>
+                                <span class="badge bg-important">5</span>
+                            </a>
+                            <ul class="dropdown-menu extended inbox">
+                                <div class="notify-arrow notify-arrow-red"></div>
+                                <li>
+                                    <p class="red">You have 5 new messages</p>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="photo"><img alt="avatar" src="./img/avatar-mini.jpg"></span>
+                                        <span class="subject">
+                                            <span class="from">Saviour Dela</span>
+                                            <span class="time">Just now</span>
+                                        </span>
+                                        <span class="message">
+                                            Hello, The farmers are in.
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="photo"><img alt="avatar" src="./img/avatar-mini2.jpg"></span>
+                                        <span class="subject">
+                                            <span class="from">Mawuli</span>
+                                            <span class="time">10 mins</span>
+                                        </span>
+                                        <span class="message">
+                                            Hi, Please how far with GRAD 
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">See all messages</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- inbox dropdown end -->
 
 
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
-      <!--sidebar end-->
-      <section id="main-content">
-        <section class="wrapper site-min-height">
-            <!-- page start|| this is here for the flash messages-->
-             {% for messages in app.session.flashbag.all %}
-        {% for message in messages%}
-            <div class="row">
-                  <div class="col-lg-offset-3 col-lg-5">
-                     
-            <div class="alert alert alert-block fade in">
-                                  <button data-dismiss="alert" class="close close-sm" type="button">
-                                      <i class="icon-remove"></i>
-                                  </button>
-                                  <h4>
-                                      <i class="icon-ok-sign"></i>
-                                      {{message}}
-                                  </h4>
-                                 
-                              </div>  
-       
-                  </div>
-              </div>
-            {% endfor %}
-         {% endfor %}
-        {% endblock %}
-        
-        {% block javascripts %}
-        
+                        <!-- notification dropdown end -->
+                    </ul>
+                </div>
+                <div class="top-nav ">
+                    <ul class="nav pull-right top-menu">
+                        <li>
+                            <input type="text" class="form-control search" placeholder="Search">
+                        </li>
+                        <!-- user login dropdown start-->
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <img alt="" src="{{asset('bundles/purecirclemain/img/avatar1_small.jpg')}}">
+                                <span class="username">{{app.user.username}}</span>
 
-            
-   <!-- js placed at the end of the document so the pages load faster -->
-    <script src="{{asset('bundles/purecirclemain/js/jquery.js')}}"></script>
-    
-     <!--common script for all pages-->
-    
-    
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu extended logout">
+                                <div class="log-arrow-up"></div>
+                                <li><a href="#"><i class=" icon-suitcase"></i>Profile</a></li>
+                                <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
+                                <li>
+                                    <a  href="#">
+                                        <i class="icon-lock"></i>
+                                        <span>Lock Account</span>
+                                    </a>
+                                </li>
+                                <li><a href="{{path('purecircle_logout')}}"><i class="icon-key"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+                        <!-- header ends here -->
+                    </ul>
+                </div>
+            </header>
+            <!--sidebar start-->
+            <aside>
+                <div id="sidebar"  class="nav-collapse ">
+                    <!-- sidebar menu start-->
+                    <ul class="sidebar-menu" id="nav-accordion">
+                        <li>
+                            <a href="{{path('purecircle_dash')}}">
+                                <i class="icon-dashboard"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
 
-   
-    <script src="{{asset('bundles/purecirclemain/js/bootstrap.min.js')}}"></script>
-    <script class="include" type="text/javascript" src="{{asset('bundles/purecirclemain/js/jquery.dcjqaccordion.2.7.js')}}"></script>
-    <script src="{{asset('bundles/purecirclemain/js/jquery.scrollTo.min.js')}}"></script>
-    <script src="{{asset('bundles/purecirclemain/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
-    <script src="{{asset('bundles/purecirclemain/js/respond.min.js')}}" ></script>
 
-   
 
-   
- <script src="{{asset('bundles/purecirclemain/js/common-scripts.js')}}"></script>
-    
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="icon-group"></i>
+                                <span>Actors</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a  href="{{path('advisor')}}"><i class="icon-truck"> </i>Technical Advisor</a></li>
+                                <li><a  href="calendar.html"><i class="icon-lemon"> </i>Farmer</a></li>
+                                <li><a  href="gallery.html"><i class="icon-leaf"> </i>Leaf Clerk</a></li>
+                                <li><a  href="todo_list.html"><i class="icon-"> </i>Mini Agent</a></li>
+                            </ul>
+                        </li>
 
-     
-    
-        
-        {% endblock %}
-    </body>
-</html>
+                        <li class="sub-menu">
+                            <a href="javascript:;" >
+                                <i class=" icon-bar-chart"></i>
+                                <span>Reports</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a  href="morris.html">Summary</a></li>
+                                <li><a  href="chartjs.html">Farmer & TA Report</a></li>
+                                <li><a  href="flot_chart.html">Planting</a></li>
+                                <li><a  href="xchart.html">_W_Et0ie9</a></li>
+                            </ul>
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li class="sub-menu">
+                                <a href="javascript:;">
+                                    <i class="icon-fire"></i>
+                                    <span>System Users</span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a  href="{{path('admin_user')}}"><i class="icon icon-laptop"> </i>County Managers</a></li>
+                                    <li><a  href="{{path('admin_user_new')}}"><i class="icon-plus-sign"> </i>Add County Manager</a></li>
+                                    <li><a  href="#"><i class="icon-bar-chart"> </i>Reports</a></li>
+                                    <li><a  href="#"><i class="icon-medkit"> </i>Misc.</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li class="sub-menu">
+                                <a href="javascript:;" >
+                                    <i class=" icon-location-arrow"></i>
+                                    <span>County</span>
+                                </a>
+                                <ul class="sub">
+                                    <li> <a href="{{path('admin_county')}}">Counties</a></li>
+                                    <li><a  href="{{path('admin_county_new')}}">Add County</a></li>
+
+
+                                </ul>
+                            </li> 
+                        {% endif %}
+
+
+
+                    </ul>
+                    <!-- sidebar menu end-->
+                </div>
+            </aside>
+            <!--sidebar end-->
+            <section id="main-content">
+                <section class="wrapper site-min-height">
+                    <!-- page start|| this is here for the flash messages-->
+                    {% for messages in app.session.flashbag.all %}
+                        {% for message in messages%}
+                            <div class="row">
+                                <div class="col-lg-offset-3 col-lg-5">
+
+                                    <div class="alert alert alert-block fade in">
+                                        <button data-dismiss="alert" class="close close-sm" type="button">
+                                            <i class="icon-remove"></i>
+                                        </button>
+                                        <h4>
+                                            <i class="icon-ok-sign"></i>
+                                            {{message}}
+                                        </h4>
+
+                                    </div>  
+
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endblock %}
+
+                {% block javascripts %}
+
+
+
+                    <!-- js placed at the end of the document so the pages load faster -->
+                    <script src="{{asset('bundles/purecirclemain/js/jquery.js')}}"></script>
+
+                    <!--common script for all pages-->
+
+
+
+
+                    <script src="{{asset('bundles/purecirclemain/js/bootstrap.min.js')}}"></script>
+                    <script class="include" type="text/javascript" src="{{asset('bundles/purecirclemain/js/jquery.dcjqaccordion.2.7.js')}}"></script>
+                    <script src="{{asset('bundles/purecirclemain/js/jquery.scrollTo.min.js')}}"></script>
+                    <script src="{{asset('bundles/purecirclemain/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
+                    <script src="{{asset('bundles/purecirclemain/js/respond.min.js')}}" ></script>
+
+
+
+
+                    <script src="{{asset('bundles/purecirclemain/js/common-scripts.js')}}"></script>
+
+
+
+
+
+                {% endblock %}
+                </body>
+                </html>

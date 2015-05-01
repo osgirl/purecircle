@@ -92,13 +92,10 @@ class UserController extends Controller {
      */
     public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('purecircleAdminBundle:User')->find($id);
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
-
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('purecircleAdminBundle:User:show.html.twig', array(
@@ -160,12 +157,12 @@ class UserController extends Controller {
             'error_bubbling' => true
         ));
         $form->add('county', 'entity', array(
-                    'class' => 'purecircleAdminBundle:County',
-                    'required'=>false,
-                    "attr" => array(
-                        "class" => "form-control"
-                    )
-                ));
+            'class' => 'purecircleAdminBundle:County',
+            'required' => false,
+            "attr" => array(
+                "class" => "form-control"
+            )
+        ));
 
         return $form;
     }
@@ -190,13 +187,13 @@ class UserController extends Controller {
         if ($editForm->isValid()) {
             $em->flush();
             $this->addFlash(
-                    "success", " Manager " .  $entity->getUsername() . " updated"
+                    "success", " Manager " . $entity->getUsername() . " updated"
             );
             return $this->redirect($this->generateUrl('admin_user_edit', array('id' => $id)));
         }
- $this->addFlash(
-                    "error", " Manager " .  $entity->getUsername() . " updupdate error"
-            );
+        $this->addFlash(
+                "error", " Manager " . $entity->getUsername() . " updupdate error"
+        );
         return $this->render('purecircleAdminBundle:User:edit.html.twig', array(
                     'entity' => $entity,
                     'edit_form' => $editForm->createView(),

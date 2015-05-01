@@ -3,19 +3,22 @@
 /*
  
  */
+
 namespace purecircle\classes;
-use purecircle\AdminBundle\Entity\User as User;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use purecircle\AdminBundle\Entity\User;
 /**
  * Description of Manager 
  *
  * @author paulem
  */
-class Manager {
+class Manager extends Controller{
    
     public function getManager() {
-       $user=new User();
-       $manager=$user->getId();
-       return $manager;
+       
         
+        $id= $this->getUser();
+        
+        return $id;
     }
 }

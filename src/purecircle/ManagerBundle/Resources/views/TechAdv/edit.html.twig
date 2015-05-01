@@ -1,16 +1,314 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    <h1>TechAdv edit</h1>
-
-    {{ form(edit_form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('advisor') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+{% extends 'base.html.twig' %}
+{% block title %}
+    New County Manager | Purecircle Report
 {% endblock %}
+
+{% block stylesheets %}
+
+    {{parent()}}
+
+
+    <link rel="stylesheet" type="text/css" href="{{asset('bundles/purecirclemain/assets/bootstrap-datepicker/css/datepicker.css')}}" />
+    {% stylesheets
+                
+               filter="cssrewrite" 
+    %}
+
+    <link  rel="stylesheet" href="{{asset_url}}"  />
+    {% endstylesheets %}    
+
+{% endblock %}
+{% block body -%}
+    {{parent()}}
+    <div class="row">
+
+        <div class="form-errors col-lg-offset-4 col-lg-5">
+
+            {{form_errors(edit_form)}}</div>
+
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <section class="panel">
+                <header class="panel-heading">
+                   Edit Tech Advisor {{entity.firstname}}
+                </header>
+                <div class="panel-body">
+                    <div class="stepy-tab">
+                        <ul id="default-titles" class="stepy-titles clearfix">
+                            <li id="default-title-0" class="current-step">
+                                <div>Profile</div>
+                            </li>
+                            <li id="default-title-2" class="">
+                                <div>Location</div>
+                            </li>
+                            <li id="default-title-3" class="">
+                                <div>Account</div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <form class="form-horizontal" action="{{ path('advisor_update',{'id':entity.id})}}" method="post" id="default" novalidate>
+                        <fieldset title="Profile" class="step" id="default-step-0">
+                            <legend> </legend>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    First name
+                                </label>
+                                <div class="col-lg-10">
+
+
+                                    {{ form_widget(edit_form.firstname)}}
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    Last name
+                                </label>
+                                <div class="col-lg-10">
+
+
+                                    {{ form_widget(edit_form.lastname)}}
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    Gender
+                                </label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(edit_form.gender)}}
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    Phone (Contact)
+                                </label>
+
+                                <div class="col-lg-10">
+
+
+                                    {{ form_widget(edit_form.contact,{'attr':{'type':"tel"}})}}
+
+
+                                </div>
+                            </div>
+
+
+                        </fieldset>
+                        <fieldset title="Location" class="step" id="default-step-1">
+                            <legend> </legend>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+                                    Region
+                                </label>
+
+                                <div class="col-lg-10">
+
+
+                                    {{ form_widget(edit_form.region)}}
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+                                    village
+                                </label>
+
+                                <div class="col-lg-10">
+                                    {{ form_widget(edit_form.village,{'attr':{'class':"form-control"}})}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div id="getLatLong" style="width:100%; height:300px;margin:auto">
+                                    
+                                    
+                                </div>
+                                <div class="col-lg-10">
+                                    <div class="row">
+
+                                        <label class="col-sm-2 col-sm-2 control-label"> 
+                                            Latitude
+                                        </label>
+                                        <div class="col-lg-4">
+                                            {{ form_widget(edit_form.latitude)}}
+                                        </div>
+
+                                        <div class="col-lg-4" >
+                                            {{ form_widget(edit_form.longitude)}}
+                                        </div>
+                                        <label class="col-sm-2 col-sm-2 control-label"> 
+                                            Longitude
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </fieldset>
+                        <fieldset title="Account" class="step" id="default-step-2" >
+                            <legend> </legend>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    Id Number
+                                </label>
+
+                                <div class="col-lg-10">
+
+
+                                    {{ form_widget(edit_form.idNumber)}}
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                    Payroll Number
+                                </label>
+
+                                <div class="col-lg-10">
+
+
+                                    {{ form_widget(edit_form.payrollNumber)}}
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-10">
+                                <div class="row">
+
+                                    <label class="col-sm-2 col-sm-2 control-label"> 
+
+                                        Date Joined
+                                    </label>
+                                    <div class="col-lg-4" style=" margin-left: 2%;">
+                                        {{ form_widget(edit_form.dateAdded,{'attr':{'class':'form-control default-date-picker '}})}}
+                                    </div>
+                                    <div class="col-lg-4" style=" margin-left: 2%;">
+                                      {#  {{ form_widget(edit_form.managerId)}}#}
+                                    </div>
+                                </div>
+
+                            </div>
+                                    <div class="form-group" >
+
+
+
+                                <div class="col-lg-10"style="margin: 3% 16%;">
+
+                                  
+                                    {{form_widget(edit_form.remarks)}} 
+
+
+                                </div>
+                            </div>  
+                            <div class="form-group">
+
+
+
+                                <div class="col-lg-10 pull-right">
+
+                                    <label class="col-sm-2 col-sm-2 control-label"> 
+
+
+                                    </label>
+                                    {{form(edit_form)}} 
+
+
+                                </div>
+                            </div>  
+                        </fieldset>
+                        <input type="submit" class="finish btn btn-danger hidden" value="Finish"/>
+
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <!-- js placed at the end of the document so the pages load faster -->
+    {{parent()}}
+
+    <!--script for this page-->
+
+
+
+    <script type="text/javascript" src="{{asset('bundles/purecirclemain/assets/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
+
+
+    <script src="{{asset('bundles/purecirclemain/js/jquery.stepy.js')}}"></script>
+    <script type="text/javascript" src="{{asset('bundles/purecirclemain/assets/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
+    <script type="text/javascript" src="{{asset('bundles/purecirclemain/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js')}}"></script>
+    <script src="{{asset('bundles/purecirclemain/js/advanced-form-components.js')}}"></script>
+    
+            <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
+            <script src="{{asset('bundles/purecirclemain/js/locationpicker.jquery.js')}}"></script>
+    <script>
+
+        //step wizard
+
+        $(function () {
+            $('#default').stepy({
+                backLabel: 'Previous',
+                block: true,
+                nextLabel: 'Next',
+                titleClick: true,
+                titleTarget: '.stepy-tab'
+            });
+        });
+    </script>
+<script>
+$('#getLatLong').locationpicker({
+	location: {latitude: 5.653607, longitude:-0.208883},
+	radius: 50,
+        inputBinding: {
+        latitudeInput: $('#purecircle_managerbundle_techadv_latitude'),
+        longitudeInput: $('#purecircle_managerbundle_techadv_longitude'),
+         locationNameInput: $('#purecircle_managerbundle_techadv_village')
+       
+    }
+	});
+</script>
+</script>
+    {%javascripts 
+          
+    %} 
+
+
+,
+
+    {%endjavascripts %}
+
+
+{% endblock %}
+
+
+
+
+
+
